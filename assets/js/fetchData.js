@@ -6,9 +6,9 @@ const fetchData = (str) => {
   ])
     .then(res => Promise.all(res.map(item => item.json())))
     .then(([term, collect, product]) => ({
-      suggestion: term,
-      collection: collect,
-      product: product
+      suggestion: term.filter(item => item.term.includes(str)).map(item => ({ ...item, term: item.term.toLowerCase() })),
+      collection: collect.filter(item => item.title.includes(str)),
+      product: product.filter(item => item.title.includes(str))
     }));
 }
 

@@ -18,7 +18,25 @@ const validateConfig = (option) => {
   return true;
 }
 
+const isValidTemplate = (template) => {
+  return template && typeof template === 'function';
+}
+
+const copyOptions = (source, destination = {}) => {
+  Object.entries(source).forEach(([key, value]) => {
+    if (typeof value === 'object' && value != null) {
+      destination[key] = destination ? copyOptions(value, destination[key]) : value;
+    }
+    if (destination[key] == null) {
+      destination[key] = value;
+    }
+  });
+  return destination;
+}
+
 export {
   debounce,
-  validateConfig
+  validateConfig,
+  isValidTemplate,
+  copyOptions
 }

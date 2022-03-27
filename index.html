@@ -8,6 +8,7 @@
   <meta name="Description" content="Enter your description here" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="auto-suggestion/css/style.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <title>Auto Suggestion</title>
 </head>
@@ -23,7 +24,13 @@
   <script type="module">
     import { initAutoSuggestion } from './auto-suggestion/index.js';
     import { fetchData } from './assets/js/fetchData.js';
-    initAutoSuggestion({ searchId: 'input', sourceData: fetchData, delay: 500 });
+    initAutoSuggestion({
+      searchId: 'input', sourceData: fetchData, delay: 500, display: {
+        maxOccurrent: {
+          product: 1
+        }
+      }
+    });
   </script>
 </body>
 

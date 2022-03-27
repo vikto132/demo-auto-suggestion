@@ -21,7 +21,14 @@ const initOption = {
       suggestion: 1,
       collection: 1,
       product: 1,
-    }
+    },
+    maxOccurrent: {
+      suggestion: 3,
+      collection: 3,
+      product: 3,
+    },
+    notFoundTemplate: null,
+    notFoundString: ''
   },
   template: {
     suggestion: null,
@@ -32,20 +39,41 @@ const initOption = {
 }
 
 const SuggestionTermTemplate = (source) => {
-  return ``
+  return `<li>${source.term}</li>`
 }
 
 const CollectionTemplate = (source) => {
-  return ``
+  return `<li>${source.title}</li>`
 }
 
 const ProductTemplate = (source) => {
-  return ``
+  return `
+  <li>
+    <div class="product-item-container">
+     <div class="product-img-container">
+      <img src="${source.image}" alt="${source.title}-${source.branch}"/>
+     </div>  
+     <div class="product-info-container">
+      <h5 class="title">${source.title}</h5>
+      <span class="brand">${source.brand}</span>
+      <span><b>${source.price}</b></span>
+     </div>
+    </div>
+  </li>`
+}
+
+const OuterTemplate = (props) => {
+  return `
+    <div class="as-container">
+      ${props.children}
+    </div>
+  `
 }
 
 export {
   initOption,
   ProductTemplate,
   CollectionTemplate,
-  SuggestionTermTemplate
+  SuggestionTermTemplate,
+  OuterTemplate
 }
